@@ -9,3 +9,12 @@ class Question(models.Model):
     description = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="forum_question")
     created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+
+class Answer(models.Model):
+    answer = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    detail = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
