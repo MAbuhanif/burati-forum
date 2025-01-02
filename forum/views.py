@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Question
+from .forms import AnswerForm
 
 
 # Create your views here.
@@ -27,9 +28,17 @@ def question_detail(request, slug):
 
     queryset = Question.objects.all()
     question = get_object_or_404(queryset, slug=slug)
+    answers = question.answers.all().order_by("-created_on")
+    answer_count = question.answers.filter(approved=True).count()
+    answer_form =AnswerForm()
 
     return render(
         request,
         "forum/question_detail.html",
-        {"question": question},
+        {
+            "question": question,
+            "answers" : answers,
+            "answer_count" : answer_count,
+            "answer_form" : answer_form,
+        },
     )
