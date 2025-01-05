@@ -33,8 +33,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">c<span class="red-o">o</span>de<span
-                        class="thin">|star</span></span></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">BuratiForum</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,7 +59,7 @@
                     {% endif %}
                 </ul>
                 <span class="navbar-text text-muted">
-                    Adventures of a software developer
+                    Where Students Ask Questions &amp; Get Answers
                 </span>
             </div>
         </div>
@@ -68,13 +67,13 @@
 
     <main class="flex-shrink-0 main-bg">
         {% if user.is_authenticated %}
-        <p class="text-end m-3">You are logged in as {{ user }}</p>
+        <p class="text-end m-3">You are logged in as - <strong>{{ user }}</strong></p>
         {% else %}
         <p class="text-end m-3">You are not logged in</p>
         {% endif %}
 
         {% block content %}
-        <!-- Content Goes here -->
+        <!-- Questions Goes here -->
         {% endblock content %}
 
     </main>
