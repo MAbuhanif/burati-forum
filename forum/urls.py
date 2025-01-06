@@ -1,8 +1,10 @@
 from . import views
 from django.urls import path
+from .views import question_list, ask_question
 
 
 urlpatterns = [
-    path('', views.QuestionList.as_view(), name='home'),
+    path('ask/', ask_question, name='ask_question'), 
     path('<slug:slug>/', views.question_detail, name='question_detail'),
+    path('', question_list, name='question_list'),
 ]
