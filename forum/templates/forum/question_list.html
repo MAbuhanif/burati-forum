@@ -22,12 +22,12 @@
         {% for question in page_obj %}
         <div class="list-group-item mb-3">
             <h5>
-                <a href="{% url 'question_detail' question.slug %}" class="text-primary">
+                <a href="{% url 'question_detail' question.slug %}" class="text-primary text-decoration-none">
                     {{ question.title }}
                 </a>
                 <span class="text-muted">&rsaquo;</span>
             </h5>
-            <p class="mb-1">{{ question.description|truncatewords:20 }}</p>
+            <p class="mb-1">{{ question.description|truncatewords:20 | safe}}</p>
             <small class="text-muted">Posted on {{ question.created_on }}</small>
         </div>
         {% endfor %}
