@@ -8,27 +8,50 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h3>{{ user.username }}</h3>
+                    <h3>{{ user.username | title}}</h3>
                 </div>
                 <div class="card-body">
                     <img src="{{ user.profile.image.url }}" class="img-fluid" alt="Profile Image">
                 </div>
+                <div class="card-body">
+                    <p>Bio: {{ user.profile.bio }}</p>
+                </div>
+            </div>
+        
+        
+    </div>
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Update Profile</h3>
+            </div>
+            <div class="row">
+               
+                <div class="col-sm-6">
+                    <div class="card-body">
+                    <p class="m-b-10 f-w-600">Email</p>
+                    <h6 class="text-muted f-w-400">{{ user.email }}</h6>
+                </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="card-body">
+                    <p class="m-b-10 f-w-600">Phone</p>
+                    <h6 class="text-muted f-w-400">{{ user.profile.phone|title }}</h6>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ user_form|crispy }}
+                    {{ profile_form|crispy }}
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Update Profile</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
+</div>
+</div>
 
 {% endblock content %}

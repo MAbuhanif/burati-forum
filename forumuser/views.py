@@ -4,7 +4,6 @@ from .models import Profile
 
 
 # Create your views here.
-def profile(request, username):
-    user = User.objects.get(username=username)
-    profile = Profile.objects.get(user=user)
+def profile(request):
+    profile = Profile.objects.all().order_by('user').first()
     return render(request, 'forumuser/profile.html', {'profile': profile})

@@ -33,15 +33,19 @@
           {{ question.title }}
         </a>
       </h5>
-      
-      <p class="mb-1">
-        {{ question.description|truncatewords:20 | safe}}
-        <a href="{% url 'question_detail' question.slug %}" class="text-decoration-none">Read more</a>
-      </p>
-      <div class="d-flex justify-content-between align-items-center">
-        <small class="text-muted">Posted on {{ question.created_on }}</small>
-        <span class="mb-1">Asked by : {{question.author}}</span>
-      </div>
+          {% if question.description|wordcount <= 20 %}
+          <p>{{ question.description }}</p>
+          
+          {% else %}
+          <p class="mb-1">
+            {{ question.description|truncatewords:20 | safe}}
+            <a href="{% url 'question_detail' question.slug %}" class="text-decoration-none">Read more</a>
+          </p>
+          {% endif %}
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">Posted on {{ question.created_on }}</small>
+            <span class="mb-1">Asked by : {{question.author}}</span>
+          </div>
        
       
     </div>
