@@ -1,151 +1,202 @@
 [
-   
-   
-    
-    
-    
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 1,
         "fields": {
+            "user": 1,
+            "title": "How to learn Django effectively?",
+            "detail": "This question is about how to learn django effectively?.",
+            "created_on": "2024-12-25 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "title": "What are the best practices for database optimization?",
+            "detail": "This question is about what are the best practices for database optimization?.",
+            "created_on": "2024-11-02 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "title": "How does Python handle memory management?",
+            "detail": "This question is about how does python handle memory management?.",
+            "created_on": "2025-01-15 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 4,
+        "fields": {
+            "user": 1,
+            "title": "What are Django signals and when to use them?",
+            "detail": "This question is about what are django signals and when to use them?.",
+            "created_on": "2024-10-31 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 5,
+        "fields": {
+            "user": 4,
+            "title": "How to implement search functionality in Django?",
+            "detail": "This question is about how to implement search functionality in django?.",
+            "created_on": "2024-10-31 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 6,
+        "fields": {
+            "user": 2,
+            "title": "What is the difference between SQL and NoSQL databases?",
+            "detail": "This question is about what is the difference between sql and nosql databases?.",
+            "created_on": "2024-11-03 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 7,
+        "fields": {
+            "user": 3,
             "title": "How to secure a Django web application?",
-            "slug": "how-to-secure-a-django-web-application",
-            "author": "1",
-            "description": "This question is about how to secure a django web application?.",
-            "created_on": "2024-10-08 17:58:44",
-            "updated_on": "2024-10-11 17:58:44"
+            "detail": "This question is about how to secure a django web application?.",
+            "created_on": "2025-01-17 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 8,
         "fields": {
+            "user": 4,
             "title": "What are middleware in Django?",
-            "slug": "what-are-middleware-in-django",
-            "author": "3",
-            "description": "This question is about what are middleware in django?.",
-            "created_on": "2024-10-10 17:58:44",
-            "updated_on": "2024-10-17 17:58:44"
+            "detail": "This question is about what are middleware in django?.",
+            "created_on": "2024-12-02 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 9,
         "fields": {
+            "user": 1,
             "title": "How to integrate a frontend framework with Django?",
-            "slug": "how-to-integrate-a-frontend-framework-with-django",
-            "author": "2",
-            "description": "This question is about how to integrate a frontend framework with django?.",
-            "created_on": "2024-11-17 17:58:44",
-            "updated_on": "2024-11-18 17:58:44"
+            "detail": "This question is about how to integrate a frontend framework with django?.",
+            "created_on": "2025-01-12 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 10,
         "fields": {
+            "user": 2,
             "title": "What is REST API and how to build it with Django?",
-            "slug": "what-is-rest-api-and-how-to-build-it-with-django",
-            "author": "2",
-            "description": "This question is about what is rest api and how to build it with django?.",
-            "created_on": "2024-12-17 17:58:44",
-            "updated_on": "2024-12-21 17:58:44"
+            "detail": "This question is about what is rest api and how to build it with django?.",
+            "created_on": "2024-12-25 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 11,
         "fields": {
+            "user": 4,
             "title": "How to optimize query performance in Django ORM?",
-            "slug": "how-to-optimize-query-performance-in-django-orm",
-            "author": "2",
-            "description": "This question is about how to optimize query performance in django orm?.",
-            "created_on": "2024-10-08 17:58:44",
-            "updated_on": "2024-10-18 17:58:44"
+            "detail": "This question is about how to optimize query performance in django orm?.",
+            "created_on": "2025-01-14 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 12,
         "fields": {
+            "user": 3,
             "title": "What are the differences between Flask and Django?",
-            "slug": "what-are-the-differences-between-flask-and-django",
-            "author": "1",
-            "description": "This question is about what are the differences between flask and django?.",
-            "created_on": "2024-12-07 17:58:44",
-            "updated_on": "2024-12-10 17:58:44"
+            "detail": "This question is about what are the differences between flask and django?.",
+            "created_on": "2025-01-01 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 13,
         "fields": {
+            "user": 3,
             "title": "How to deploy a Django application on Heroku?",
-            "slug": "how-to-deploy-a-django-application-on-heroku",
-            "author": "3",
-            "description": "This question is about how to deploy a django application on heroku?.",
-            "created_on": "2024-10-18 17:58:44",
-            "updated_on": "2024-10-20 17:58:44"
+            "detail": "This question is about how to deploy a django application on heroku?.",
+            "created_on": "2024-12-18 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 14,
         "fields": {
+            "user": 3,
             "title": "What is the role of migrations in Django?",
-            "slug": "what-is-the-role-of-migrations-in-django",
-            "author": "4",
-            "description": "This question is about what is the role of migrations in django?.",
-            "created_on": "2024-09-28 17:58:44",
-            "updated_on": "2024-10-02 17:58:44"
+            "detail": "This question is about what is the role of migrations in django?.",
+            "created_on": "2024-12-23 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 15,
         "fields": {
+            "user": 2,
             "title": "How to use Celery with Django for background tasks?",
-            "slug": "how-to-use-celery-with-django-for-background-tasks",
-            "author": "3",
-            "description": "This question is about how to use celery with django for background tasks?.",
-            "created_on": "2024-10-22 17:58:44",
-            "updated_on": "2024-10-25 17:58:44"
+            "detail": "This question is about how to use celery with django for background tasks?.",
+            "created_on": "2024-12-06 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 16,
         "fields": {
+            "user": 2,
             "title": "What is the difference between function-based and class-based views?",
-            "slug": "what-is-the-difference-between-function-based-and-class-based-views",
-            "author": "1",
-            "description": "This question is about what is the difference between function-based and class-based views?.",
-            "created_on": "2024-10-28 17:58:44",
-            "updated_on": "2024-10-29 17:58:44"
+            "detail": "This question is about what is the difference between function-based and class-based views?.",
+            "created_on": "2025-01-08 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 17,
         "fields": {
+            "user": 1,
             "title": "How to manage static files and media in Django?",
-            "slug": "how-to-manage-static-files-and-media-in-django",
-            "author": "2",
-            "description": "This question is about how to manage static files and media in django?.",
-            "created_on": "2024-11-01 17:58:44",
-            "updated_on": "2024-11-02 17:58:44"
+            "detail": "This question is about how to manage static files and media in django?.",
+            "created_on": "2024-12-09 11:52:05"
         }
     },
     {
         "model": "forum.question",
-        "pk": null,
+        "pk": 18,
         "fields": {
+            "user": 4,
             "title": "How does Django handle user authentication?",
-            "slug": "how-does-django-handle-user-authentication",
-            "author": "3",
-            "description": "This question is about how does django handle user authentication?.",
-            "created_on": "2024-11-12 17:58:44",
-            "updated_on": "2024-11-14 17:58:44"
+            "detail": "This question is about how does django handle user authentication?.",
+            "created_on": "2024-12-24 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 19,
+        "fields": {
+            "user": 2,
+            "title": "What is the purpose of Django admin panel?",
+            "detail": "This question is about what is the purpose of django admin panel?.",
+            "created_on": "2024-12-31 11:52:05"
+        }
+    },
+    {
+        "model": "forum.question",
+        "pk": 20,
+        "fields": {
+            "user": 1,
+            "title": "How to write tests for a Django application?",
+            "detail": "This question is about how to write tests for a django application?.",
+            "created_on": "2024-10-12 11:52:05"
         }
     }
 ]

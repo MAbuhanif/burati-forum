@@ -10,7 +10,7 @@
                 <!-- Question title goes in these h1 tags -->
                 <h3 class="post-title">{{ question.title }}</h3>
                 <!-- Question author goes before the | the questions's created date goes after -->
-                <p class="post-subtitle">{{ question.author }} | {{ question.created_on }}</p>
+                <p class="post-subtitle">{{ question.user }} | {{ question.created_on }}</p>
             </div>
             
         </div>
@@ -24,7 +24,7 @@
                 <!-- The question description goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
-                    {{ question.description | safe }}
+                    {{ question.detail | safe }}
                 </p>
             </div>
         </div>
@@ -52,7 +52,7 @@
                     {% if not answer.approved and answer.author == user %}
                     faded{% elif not answer.approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
-                        {{ answer.author }}
+                        {{ answer.user }}
                         <span class="font-weight-normal">
                             {{ answer.created_on }}
                         </span> wrote:
@@ -60,7 +60,7 @@
                     <div id="comment{{ answer.id }}">
                         {{ answer.body | linebreaks }}
                     </div>
-                    {% if not answer.approved and answer.author == user %}
+                    {% if not answer.approved and answer.user == user %}
                     <p class="approval">
                         This Answer is awaiting approval
                     </p>
