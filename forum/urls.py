@@ -1,10 +1,9 @@
-from . import views
 from django.urls import path
-from .views import question_list, ask_question
+from . import views
 
 
 urlpatterns = [
-    path('ask/', ask_question, name='ask_question'), 
+    path('ask/', views.ask_question, name='ask_question'), 
     path('<int:id>/', views.question_detail, name='question_detail'),
-    path('', question_list, name='question_list'),
+    path('', views.question_list, name='question_list'),
 ]

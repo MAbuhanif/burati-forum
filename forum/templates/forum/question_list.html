@@ -1,5 +1,6 @@
 <!-- templates/forum/question_list.html -->
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Questions</h1>
@@ -7,47 +8,34 @@
   </div>
 
   <!-- Search Form -->
-  <form method="get" class="mb-4">
+  <form method="GET" action="{% url 'question_list' %}" class="mb-4">
     <div class="input-group">
-      <input
-        type="text"
-        name="q"
-        class="form-control"
-        placeholder="Search questions..."
-        value="{{ query }}"
-      />
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-      </div>
+      <input type="text" name="q" class="form-control" placeholder="Search questions..." value="{{ request.GET.q }}">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
   </form>
 
+  <!-- Displaying Questions -->
   <div class="list-group">
-    {% for question in page_obj %}
+    {% for question in questions %}
     <div class="list-group-item mb-3">
       <h5>
-        <a
-          href="{% url 'question_detail' question.id %}"
-          class="text-primary text-decoration-none"
-        >
+        <a href="{% url 'question_detail' question.id %}" class="text-primary text-decoration-none">
           {{ question.title }}
         </a>
       </h5>
-          {% if question.detail|wordcount <= 20 %}
-          <p>{{ question.detail }}</p>
-          
-          {% else %}
-          <p class="mb-1">
-            {{ question.detail|truncatewords:20 | safe}}
-            <a href="{% url 'question_detail' question.id %}" class="text-decoration-none">Read more</a>
-          </p>
-          {% endif %}
-          <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted">Posted on {{ question.created_on }}</small>
-            <span class="mb-1">Asked by : {{question.user}}</span>
-          </div>
-       
-      
+      {% if question.detail|wordcount <= 10 %} <p>{{ question.detail }}</p>
+    
+        {% else %}
+        <p class="mb-1">
+          {{ question.detail|truncatewords:10 | safe}}
+          <a href="{% url 'question_detail' question.id %}" class="text-decoration-none">Read more</a>
+        </p>
+        {% endif %}
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted">Posted on {{ question.created_on }}</small>
+          <span class="mb-1">Asked by : {{question.user}}</span>
+        </div>
     </div>
     {% endfor %}
   </div>
@@ -55,7 +43,7 @@
   <!-- Pagination -->
   <nav aria-label="Page navigation" class="mt-4">
     <ul class="pagination justify-content-center">
-      {% if page_obj.has_previous %}
+      {% if questions.has_previous %}
       <li class="page-item">
         <a
           class="page-link"
@@ -67,11 +55,11 @@
       </li>
       {% endif %}
       
-      {% for num in page_obj.paginator.page_range %}
-      {% if num == page_obj.number %}
+      {% for num in questions.paginator.page_range %}
+      {% if num == questions.number %}
       <li class="page-item active"><span class="page-link">{{ num }}</span></li>
       {% else %}
-          {% if num > page_obj.number|add:-3 and num < page_obj.number|add:3 %}
+          {% if num > questions.number|add:-3 and num < questions.number|add:3 %}
           <li class="page-item">
               <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
           </li>

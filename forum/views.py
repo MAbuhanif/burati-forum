@@ -4,25 +4,22 @@ from .models import Question
 from .forms import AnswerForm, QuestionForm
 
 
-# Create your views here.
-# class QuestionList(generic.ListView):
-#     queryset = Question.objects.all()
-#     template_name = "forum/index.html"
-#     paginate_by = 4
-
 def question_list(request):
+    """
+    search for questions by title
+    """
     query = request.GET.get('q')
     if query:
         questions = Question.objects.filter(title__icontains=query).order_by('-created_on')
     else:
         questions = Question.objects.all().order_by('-created_on')
-    questions = Question.objects.all().order_by('-created_on')  # Adjust query as needed
-    paginator = Paginator(questions, 4)  # Show 4 questions per page
+    paginator = Paginator(questions, 4)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'forum/question_list.html', {'page_obj': page_obj, 'query': query})
+    questions = paginator.get_page(page_number)
+    return render(request, 'forum/question_list.html', {'questions': questions, })
 
 # Ask Question
+
 
 def ask_question(request):
     if request.method == 'POST':
@@ -50,7 +47,7 @@ def question_detail(request, slug):
     """
 
     queryset = Question.objects.all()
-    question = get_object_or_404(queryset, slug=slug)
+    question = get_object_or_404(queryset, id=id)
     answers = question.answers.all().order_by("-created_on")
     answer_count = question.answers.filter(approved=True).count()
     answer_form =AnswerForm()
