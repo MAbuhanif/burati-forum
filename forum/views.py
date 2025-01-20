@@ -22,7 +22,7 @@ def question_list(request):
 
 # Ask Question
 
-
+@login_required
 def ask_question(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
