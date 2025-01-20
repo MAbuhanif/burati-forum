@@ -9,7 +9,7 @@ The Answer model is registered using the AnswerAdmin class.
 """
 @admin.register(Question)
 class QuestionAdmin(SummernoteModelAdmin):
-    list_display = ('title','user', 'created_on')
+    list_display = ('title', 'user', 'created_on')
     list_filter = ('created_on',)
     search_fields = ['title', 'detail']
     summernote_fields = ('detail',)

@@ -29,7 +29,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='forum_answers')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     detail = models.TextField()
     approved = models.BooleanField(default=False)

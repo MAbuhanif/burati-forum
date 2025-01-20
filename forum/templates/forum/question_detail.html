@@ -7,10 +7,8 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- Question title goes in these h1 tags -->
                 <h3 class="post-title">{{ question.title }}</h3>
-                <!-- Question author goes before the | the questions's created date goes after -->
-                <p class="post-subtitle">{{ question.user }} | {{ question.created_on }}</p>
+                <p class="post-subtitle">Asked by: <strong>{{ question.user }}</strong> | {{ question.created_on }}</p>
             </div>
             
         </div>
@@ -29,17 +27,7 @@
             </div>
         </div>
     </div>
-    <!-- Displaying count of Answer -->
-    <div class="row">
-        <div class="col-12">
-            <strong class="text-secondary">
-                <i class="far fa-comments"></i> {{ answer_count }}
-            </strong>
-        </div>
-        <div class="col-12">
-            <hr>
-        </div>
-    </div>
+    
     <!-- Displaying Comments -->
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
@@ -49,16 +37,17 @@
           to iterate through each comment in comments -->
                 {% for answer in answers %}
                 <div class="p-2 comments
-                    {% if not answer.approved and answer.author == user %}
+                    {% if not answer.approved and answer.user == user %}
                     faded{% elif not answer.approved %} d-none{% endif %}">
+                   
                     <p class="font-weight-bold">
-                        {{ answer.user }}
+                        {{ answer.user.username}}
                         <span class="font-weight-normal">
                             {{ answer.created_on }}
                         </span> wrote:
                     </p>
-                    <div id="comment{{ answer.id }}">
-                        {{ answer.body | linebreaks }}
+                    <div class="comment-text">
+                        {{ answer.detail | linebreaks }}
                     </div>
                     {% if not answer.approved and answer.user == user %}
                     <p class="approval">

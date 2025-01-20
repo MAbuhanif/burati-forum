@@ -8,7 +8,6 @@ class AnswerForm(forms.ModelForm):
         fields = ('detail',)
 
 
-
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question

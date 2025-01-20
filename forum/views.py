@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-from .models import Question
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import Question, Answer
 from .forms import AnswerForm, QuestionForm
 
 
@@ -32,33 +34,33 @@ def ask_question(request):
     return render(request, 'forum/ask_question.html', {'form': form})
 
 
-def question_detail(request, slug):
+@login_required
+def question_detail(request, pk):
     """
-    Display an individual :model:`question.Post`.
-
-    **Context**
-
-    ``question``
-        An instance of :model:`forum.Question`.
-
-    **Template:**
-
-    :template:`forum/question_detail.html`
+    Display question and answers  
     """
-
     queryset = Question.objects.all()
-    question = get_object_or_404(queryset, id=id)
-    answers = question.answers.all().order_by("-created_on")
-    answer_count = question.answers.filter(approved=True).count()
-    answer_form =AnswerForm()
+    question = get_object_or_404(queryset, pk=pk)
+    answers = Answer.objects.filter(question=question)
+    answer_form = AnswerForm()
 
+    if request.method == "POST":
+        answer_form = AnswerForm(request.POST)
+        if answer_form.is_valid():
+            answer = answer_form.save(commit=False)
+            answer.question = question
+            answer.user = request.user
+            answer.save()  
+            messages.success(request, "Your answer has been submitted for review")
+            return redirect("question_detail", pk=question.pk)
+    else:
+        answer_form = AnswerForm()                     
     return render(
         request,
         "forum/question_detail.html",
         {
             "question": question,
-            "answers" : answers,
-            "answer_count" : answer_count,
             "answer_form" : answer_form,
+            "answers": answers,
         },
     )
