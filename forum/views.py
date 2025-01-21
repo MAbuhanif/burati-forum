@@ -27,7 +27,10 @@ def ask_question(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
+            question = form.save(commit=False)
+            question.user = request.user
             form.save()
+            messages.success(request, 'Your question has been posted.')
             return redirect('question_list')
     else:
         form = QuestionForm()
