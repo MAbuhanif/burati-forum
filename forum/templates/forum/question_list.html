@@ -34,6 +34,10 @@
       <div class="d-flex justify-content-between align-items-center">
         <small class="text-muted">Posted on {{ question.created_on|date:"F j, Y, g:i a" }} by {{ question.user }}</small>
       </div>
+      {% if question.user == user %}
+          <a href="{% url 'update_question' question.id %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-danger">Delete</a>
+      {% endif %}
     </div>
     {% endfor %}
   </div>

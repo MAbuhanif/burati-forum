@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% if question %}Edit{% else %}Ask{% endif %} Question</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{% if question %}{% url 'question_detail' question.id %}{% else %}{% url 'question_list' %}{% endif %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

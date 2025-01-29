@@ -3,7 +3,48 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<div class="masthead">
+
+
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.detail }}</p>
+    <p class="text-muted">
+        Asked by {{ question.user.username }} on {{ question.created_on }}
+        {% if question.user == user %}
+            <a href="{% url 'update_question' question.id %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-danger">Delete</a>
+        {% endif %}
+    </p>
+
+    <h3>Answers</h3>
+    {% for answer in answers %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p>{{ answer.detail }}</p>
+                <p class="text-muted">
+                    Answered by {{ answer.user.username }} on {{ answer.created_on }}
+                    {% if answer.user == user %}
+                        <a href="{% url 'delete_answer' answer.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No answers yet.</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+        <h4>Post Your Answer</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Post Answer</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> to post an answer.</p>
+    {% endif %}
+
+
+<!-- <div class="masthead">
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
@@ -13,14 +54,13 @@
             
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
-                <!-- The question description goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
+                
                 <p class="card-text">
                     {{ question.detail | safe }}
                 </p>
@@ -28,13 +68,12 @@
         </div>
     </div>
     
-    <!-- Displaying Comments -->
+    
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Answers:</h3>
             <div class="card-body">
-                <!-- We want a for loop inside the empty control tags
-          to iterate through each comment in comments -->
+                
                 {% for answer in answers %}
                 <div class="p-2 comments
                     {% if not answer.approved and answer.user == user %}
@@ -55,11 +94,11 @@
                     </p>
                     {% endif %}
                 </div>
-                <!-- Our for loop ends here -->
+                
                 {% endfor %}
             </div>
         </div>
-        <!-- Creating New Comments -->
+   
     <div class="col-md-4 card mb-4 mt-3">
         <div class="card-body">
           {% if user.is_authenticated %}
@@ -78,5 +117,5 @@
         </div>
       </div>
     </div>
-</div>
+</div> -->
 {% endblock content %}
