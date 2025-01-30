@@ -2,11 +2,12 @@
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% url 'account_login' as login_url %}
 
 
 
     <h2>{{ question.title }}</h2>
-    <p>{{ question.detail }}</p>
+    <p>{{ question.detail | safe}}</p>
     <p class="text-muted">
         Asked by {{ question.user.username }} on {{ question.created_on }}
         {% if question.user == user %}
@@ -19,7 +20,7 @@
     {% for answer in answers %}
         <div class="card mb-3">
             <div class="card-body">
-                <p>{{ answer.detail }}</p>
+                <p>{{ answer.detail | safe }}</p>
                 <p class="text-muted">
                     Answered by {{ answer.user.username }} on {{ answer.created_on }}
                     {% if answer.user == user %}
@@ -36,11 +37,11 @@
         <h4>Post Your Answer</h4>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ answer_form.as_p }}
             <button type="submit" class="btn btn-primary">Post Answer</button>
         </form>
     {% else %}
-        <p><a href="{% url 'login' %}">Login</a> to post an answer.</p>
+        <p><a href="{% url 'account_login' %}">Login</a> to post an answer.</p>
     {% endif %}
 
 

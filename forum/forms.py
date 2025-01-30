@@ -13,5 +13,3 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         fields = ('detail',)
 
-
-
