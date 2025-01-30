@@ -13,19 +13,21 @@ def question_list(request):
     """
     query = request.GET.get('q')
     if query:
-        questions = Question.objects.filter(title__icontains=query).order_by('-created_on')
+        questions = Question.objects.filter(title__icontains=query).order_by(
+            '-created_on')
     else:
         questions = Question.objects.all().order_by('-created_on')
     paginator = Paginator(questions, 4)
     page_number = request.GET.get('page')
     questions = paginator.get_page(page_number)
-    return render(request, 'forum/question_list.html', {'questions': questions, })
+    return render(
+        request, 'forum/question_list.html', {'questions': questions, })
 
 
 # Question Detail
 def question_detail(request, question_id):
     """
-    Display question and answers  
+    Display question and answers
     """
     queryset = Question.objects.all()
     question = get_object_or_404(queryset, pk=question_id)
@@ -38,17 +40,20 @@ def question_detail(request, question_id):
             answer = answer_form.save(commit=False)
             answer.question = question
             answer.user = request.user
-            answer.save()  
-            messages.success(request, "Your answer has been submitted for review")
+            answer.save()
+            messages.success(
+                request,
+                "Your answer has been submitted for review"
+            )
             return redirect("question_detail", question_id=question.id)
     else:
-        answer_form = AnswerForm()                     
+        answer_form = AnswerForm()
     return render(
         request,
         "forum/question_detail.html",
         {
             "question": question,
-            "answer_form" : answer_form,
+            "answer_form": answer_form,
             "answers": answers,
         },
     )
@@ -99,5 +104,5 @@ def delete_answer(request, answer_id):
     if request.method == 'POST':
         answer.delete()
         return redirect('question_detail', question_id=answer.question.id)
-    return render(request, 'forum/confirm_delete_answer.html', {'answer': answer})
-
+    return render(
+        request, 'forum/confirm_delete_answer.html', {'answer': answer})
