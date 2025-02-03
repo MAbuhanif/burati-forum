@@ -5,7 +5,10 @@ from .forms import UserForm, ProfileForm
 
 @login_required
 def profile(request):
-    profile = Profile.objects.get(user=request.user)
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=request.user)
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
