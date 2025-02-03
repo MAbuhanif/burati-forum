@@ -59,6 +59,20 @@ def question_detail(request, question_id):
     )
 
 
+# update answer
+@login_required
+def update_answer(request, answer_id):
+    answer = get_object_or_404(Answer, pk=answer_id, user=request.user)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST, instance=answer)
+        if form.is_valid():
+            form.save()
+            return redirect('question_detail', question_id=answer.question.id)
+    else:
+        form = AnswerForm(instance=answer)
+    return render(request, 'forum/answer_form.html', {'form': form})
+
+
 # Ask Question
 @login_required
 def ask_question(request):
@@ -69,7 +83,7 @@ def ask_question(request):
             question.user = request.user
             form.save()
             messages.success(request, 'Your question has been posted.')
-            return redirect('question_list')
+            return redirect('home')
     else:
         form = QuestionForm()
     return render(request, 'forum/ask_question.html', {'form': form})

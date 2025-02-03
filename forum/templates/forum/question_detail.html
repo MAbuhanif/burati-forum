@@ -1,122 +1,53 @@
+<!-- filepath: /c:/Users/seada/OneDrive/Desktop/general/OneDrive/Documents/Code Institute Projects/burati-forum/forum/templates/forum/question_detail.html -->
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% url 'account_login' as login_url %}
 
+<h2>{{ question.title }}</h2>
+<p>{{ question.detail | safe}}</p>
+<p class="text-muted">
+    Asked by {{ question.user.username }} on {{ question.created_on }}
+    {% if question.user == user %}
+        <a href="{% url 'update_question' question.id %}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-danger">Delete</a>
+    {% endif %}
+</p>
 
-
-    <h2>{{ question.title }}</h2>
-    <p>{{ question.detail | safe}}</p>
-    <p class="text-muted">
-        Asked by {{ question.user.username }} on {{ question.created_on }}
-        {% if question.user == user %}
-            <a href="{% url 'update_question' question.id %}" class="btn btn-sm btn-warning">Edit</a>
-            <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-danger">Delete</a>
-        {% endif %}
-    </p>
-
-    <h3>Answers</h3>
-    {% for answer in answers %}
+<h3>Answers</h3>
+{% for answer in answers %}
+    {% if answer.approved or answer.user == user %}
         <div class="card mb-3">
             <div class="card-body">
                 <p>{{ answer.detail | safe }}</p>
                 <p class="text-muted">
                     Answered by {{ answer.user.username }} on {{ answer.created_on }}
                     {% if answer.user == user %}
+                        <a href="{% url 'update_answer' answer.id %}" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{% url 'delete_answer' answer.id %}" class="btn btn-sm btn-danger">Delete</a>
                     {% endif %}
                 </p>
-            </div>
-        </div>
-    {% empty %}
-        <p>No answers yet.</p>
-    {% endfor %}
-
-    {% if user.is_authenticated %}
-        <h4>Post Your Answer</h4>
-        <form method="post">
-            {% csrf_token %}
-            {{ answer_form.as_p }}
-            <button type="submit" class="btn btn-primary">Post Answer</button>
-        </form>
-    {% else %}
-        <p><a href="{% url 'account_login' %}">Login</a> to post an answer.</p>
-    {% endif %}
-
-
-<!-- <div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <h3 class="post-title">{{ question.title }}</h3>
-                <p class="post-subtitle">Asked by: <strong>{{ question.user }}</strong> | {{ question.created_on }}</p>
-            </div>
-            
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="container">
-    <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                
-                <p class="card-text">
-                    {{ question.detail | safe }}
-                </p>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Answers:</h3>
-            <div class="card-body">
-                
-                {% for answer in answers %}
-                <div class="p-2 comments
-                    {% if not answer.approved and answer.user == user %}
-                    faded{% elif not answer.approved %} d-none{% endif %}">
-                   
-                    <p class="font-weight-bold">
-                        {{ answer.user.username}}
-                        <span class="font-weight-normal">
-                            {{ answer.created_on }}
-                        </span> wrote:
-                    </p>
-                    <div class="comment-text">
-                        {{ answer.detail | linebreaks }}
-                    </div>
-                    {% if not answer.approved and answer.user == user %}
+                {% if not answer.approved and answer.user == user %}
                     <p class="approval">
                         This Answer is awaiting approval
                     </p>
-                    {% endif %}
-                </div>
-                
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
-   
-    <div class="col-md-4 card mb-4 mt-3">
-        <div class="card-body">
-          {% if user.is_authenticated %}
-          <h3>Leave an Answer:</h3>
-          <p>Posting as: {{ user.username }}</p>
-          <form id="commentForm" method="post"
-            style="margin-top: 1.3em;">
-            {{ answer_form | crispy }}
-            {% csrf_token %}
-            <button id="submitButton" type="submit"
-              class="btn btn-signup btn-lg">Submit</button>
-          </form>
-          {% else %}
-          <p>Log in to leave an answer</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-</div> -->
+    {% endif %}
+{% empty %}
+    <p>No answers yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <h4>Post Your Answer</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ answer_form|crispy }}
+        <button type="submit" class="btn btn-primary">Post Answer</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'account_login' %}">Login</a> to post an answer.</p>
+{% endif %}
 {% endblock content %}
