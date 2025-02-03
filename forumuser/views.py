@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 from .forms import UserForm, ProfileForm
 
+
+# Profile view
 @login_required
 def profile(request):
     try:
@@ -26,3 +28,8 @@ def profile(request):
         'profile_form': profile_form,
         'profile': profile
     })
+
+
+# About view
+def about(request):
+    return render(request, 'forumuser/about.html')
