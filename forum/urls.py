@@ -10,3 +10,4 @@ urlpatterns = [
     path('answer/<int:answer_id>/delete/', views.delete_answer, name='delete_answer'),
     path('', views.question_list, name='question_list'),
 ]
+handler404 = 'forumuser.views.custom_404'

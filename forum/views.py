@@ -88,7 +88,7 @@ def update_question(request, question_id):
         form = QuestionForm(instance=question)
     return render(request, 'forum/question_form.html', {'form': form})
 
-
+# delete question
 @login_required
 def delete_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id, user=request.user)
@@ -97,7 +97,7 @@ def delete_question(request, question_id):
         return redirect('question_list')
     return render(request, 'forum/confirm_delete.html', {'question': question})
 
-
+# delete answer
 @login_required
 def delete_answer(request, answer_id):
     answer = get_object_or_404(Answer, pk=answer_id, user=request.user)
@@ -106,3 +106,8 @@ def delete_answer(request, answer_id):
         return redirect('question_detail', question_id=answer.question.id)
     return render(
         request, 'forum/confirm_delete_answer.html', {'answer': answer})
+
+
+# custom 404
+def custom_404(request, exception):
+    return render(request, 'forum/404.html', status=404)
