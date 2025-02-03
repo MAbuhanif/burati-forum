@@ -7,7 +7,7 @@
   </div>
 
   <!-- Search Form -->
-  <form method="GET" action="{% url 'question_list' %}" class="mb-4">
+  <form method="GET" action="{% url 'home' %}" class="mb-4">
     <div class="input-group">
       <input type="text" name="q" class="form-control" placeholder="Search questions..." value="{{ request.GET.q }}">
       <button class="btn btn-outline-secondary" type="submit">Search</button>

@@ -7,7 +7,7 @@ from .forms import AnswerForm, QuestionForm
 
 
 # Question List
-def question_list(request):
+def home(request):
     """
     search for questions by title
     """
@@ -110,4 +110,4 @@ def delete_answer(request, answer_id):
 
 # custom 404
 def custom_404(request, exception):
-    return render(request, 'forum/404.html', status=404)
+    return render(request, 'buratiforum/templates/404.html', status=404)
