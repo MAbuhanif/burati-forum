@@ -88,6 +88,7 @@ def update_question(request, question_id):
         form = QuestionForm(instance=question)
     return render(request, 'forum/question_form.html', {'form': form})
 
+
 # delete question
 @login_required
 def delete_question(request, question_id):
@@ -96,6 +97,7 @@ def delete_question(request, question_id):
         question.delete()
         return redirect('question_list')
     return render(request, 'forum/confirm_delete.html', {'question': question})
+
 
 # delete answer
 @login_required
@@ -111,3 +113,18 @@ def delete_answer(request, answer_id):
 # custom 404
 def custom_404(request, exception):
     return render(request, 'buratiforum/templates/404.html', status=404)
+
+
+# custom 400
+def custom_400(request, exception):
+    return render(request, 'buratiforum/templates/400.html', status=400)
+
+
+# custom 500
+def custom_500(request):
+    return render(request, 'buratiforum/templates/500.html', status=500)
+
+
+# custom 403
+def custom_403(request, exception):
+    return render(request, 'buratiforum/templates/403.html', status=403)
