@@ -12,16 +12,110 @@ Burati Forum is a web application built with Django that allows users to ask que
 - Search for questions
 - Responsive design with Bootstrap
 
-## Technologies Used
+## Site Pages
 
-- Python 3.8+
-- Django 3.2+
-- Bootstrap 4.5
-- django-summernote
-- SQLite (Development)
-- PostgreSQL (Production-ready)
+### Home Page
+![Home Page](screenshots/home_page.png)
+
+### Register Page
+![Register Page](screenshots/register_page.png)
+
+### Login Page
+![Login Page](screenshots/login_page.png)
+
+### Profile Page
+![Profile Page](screenshots/profile_page.png)
+
+### Ask a Question Page
+![Ask a Question Page](screenshots/ask_question_page.png)
+
+### Question Detail Page
+![Question Detail Page](screenshots/question_detail_page.png)
+
+### Update Question Page
+![Update Question Page](screenshots/update_question_page.png)
+
+### Delete Question Page
+![Delete Question Page](screenshots/delete_question_page.png)
+
+### Post an Answer
+![Post an Answer](screenshots/post_answer.png)
+
+### Update Answer Page
+![Update Answer Page](screenshots/update_answer_page.png)
+
+### Delete Answer Page
+![Delete Answer Page](screenshots/delete_answer_page.png)
 
 
+## Tools & Technologies Used
+
+- **HTML** - used for the main site content.
+- **CSS** used for the main site design and layout.
+- **Python** used as the back-end programming language.
+- **Git** used for version control. (git add, git commit, git push)
+- **GitHub** used for secure online code storage.
+- **Gitpod** used as a cloud-based IDE for development.
+- **Django** used as the Python framework for the site.
+- **Bootstrap** used as the front-end CSS framework for modern responsiveness and pre-built components.
+- **SQLite (Development)**
+- **PostgreSQL (Production-ready)** used as the relational database management.
+- **Crispy Forms** used for auto-formatting of front-end forms
+- **Allauth** used as the user authentication system
+- **Heroku** used for hosting the deployed back-end site.
+
+## Database Design
+
+  - While planning this project, I drew up an Entity Relationship Diagram to help me to visualise the database models and their relationships.
+
+
+  ### Users Table
+| Column          | Type         | Description       |
+|-----------------|--------------|-------------------|
+| id (PK)         | Integer      | Primary Key       |
+| username        | String       | Unique identifier |
+| password        | String       | Hashed password   |
+| email           | String       | User email        |
+| first_name      | String       | First name        |
+| last_name       | String       | Last name         |
+| date_joined     | DateTime     | Registration date |
+
+### Profile Table
+| Column          | Type         | Description            |
+|-----------------|--------------|------------------------|
+| id (PK)         | Integer      | Primary Key            |
+| user_id (FK)    | Integer      | References Users.id    |
+| bio             | Text         | User biography         |
+| phone           | String       | Contact number         |
+| profile_image   | String       | Image URL/path         |
+
+### Question Table
+| Column          | Type         | Description            |
+|-----------------|--------------|------------------------|
+| id (PK)         | Integer      | Primary Key            |
+| user_id (FK)    | Integer      | References Users.id    |
+| title           | String       | Question title         |
+| detail         | Text         | Question details       |
+| created_on      | DateTime     | Creation timestamp     |
+
+### Answer Table
+| Column          | Type         | Description            |
+|-----------------|--------------|------------------------|
+| id (PK)         | Integer      | Primary Key            |
+| question_id (FK)| Integer      | References Question.id |
+| user_id (FK)    | Integer      | References Users.id    |
+| detail         | Text         | Answer text            |
+| created_on      | DateTime     | Creation timestamp     |
+| approved        | Boolean      | Moderation status      |
+
+### Relationships
+1. **One-to-One**:  
+   `Users` ←→ `Profile` (One user has one profile)
+
+2. **One-to-Many**:  
+   `Users` ←→ `Questions` (One user can have many questions)  
+   `Users` ←→ `Answers` (One user can have many answers)  
+   `Questions` ←→ `Answers` (One question can have many answers)
 ## Installation
 
 1. **Clone the repository:**
