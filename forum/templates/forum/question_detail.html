@@ -1,53 +1,56 @@
-<!-- filepath: /c:/Users/seada/OneDrive/Desktop/general/OneDrive/Documents/Code Institute Projects/burati-forum/forum/templates/forum/question_detail.html -->
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% url 'account_login' as login_url %}
 
-<h2>{{ question.title }}</h2>
-<p>{{ question.detail | safe}}</p>
-<p class="text-muted">
-    Asked by {{ question.user.username }} on {{ question.created_on }}
-    {% if question.user == user %}
-        <a href="{% url 'update_question' question.id %}" class="btn btn-sm btn-warning">Edit</a>
-        <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-danger">Delete</a>
-    {% endif %}
-</p>
+<div class="container mt-5">
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.detail | safe}}</p>
+    <p class="text-muted">
+        Asked by {{ question.user.username }} on {{ question.created_on }}
+        {% if question.user == user %}
+            <a href="{% url 'update_question' question.id %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'delete_question' question.id %}" class="btn btn-sm btn-danger">Delete</a>
+        {% endif %}
+    </p>
 
-<h3>Answers</h3>
-{% for answer in answers %}
-    {% if answer.approved or answer.user == user %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <p>{{ answer.detail | safe }}</p>
-                <p class="text-muted">
-                    Answered by {{ answer.user.username }} on {{ answer.created_on }}
-                    {% if answer.user == user %}
-                        <a href="{% url 'update_answer' answer.id %}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{% url 'delete_answer' answer.id %}" class="btn btn-sm btn-danger">Delete</a>
-                    {% endif %}
-                </p>
-                {% if not answer.approved and answer.user == user %}
-                    <p class="approval">
-                        This Answer is awaiting approval
+    <h3>Answers</h3>
+    {% for answer in answers %}
+        {% if answer.approved or answer.user == user %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p>{{ answer.detail | safe }}</p>
+                    <p class="text-muted">
+                        Answered by {{ answer.user.username }} on {{ answer.created_on }}
+                        {% if answer.user == user %}
+                            <a href="{% url 'update_answer' answer.id %}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{% url 'delete_answer' answer.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        {% endif %}
                     </p>
-                {% endif %}
+                    {% if not answer.approved and answer.user == user %}
+                        <p class="approval">
+                            This Answer is awaiting approval
+                        </p>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    {% endif %}
-{% empty %}
-    <p>No answers yet.</p>
-{% endfor %}
+        {% endif %}
+    {% empty %}
+        <p>No answers yet.</p>
+    {% endfor %}
 
-{% if user.is_authenticated %}
-    <h4>Post Your Answer</h4>
-    <form method="post">
-        {% csrf_token %}
-        {{ answer_form|crispy }}
-        <button type="submit" class="btn btn-primary">Post Answer</button>
-    </form>
-{% else %}
-    <p><a href="{% url 'account_login' %}">Login</a> to post an answer.</p>
-{% endif %}
+    {% if user.is_authenticated %}
+        <h4>Post Your Answer</h4>
+        <form method="post" class="px-5">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ answer_form|crispy }}
+            </div>
+            <button type="submit" class="btn btn-primary">Post Answer</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'account_login' %}">Login</a> to post an answer.</p>
+    {% endif %}
+</div>
 {% endblock content %}

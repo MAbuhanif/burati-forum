@@ -27,7 +27,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-n=p0tk74s*l50y6up_=7b42o8k)+)t5j2+we(56rim^r9jw)yi'
+# SECRET_KEY = 'django-insecure-n=p0tk74s*l50y6up_=7b42o8k)+)t5j2+we(
+# 56rim^r9jw)yi'
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
-    'django_summernote',
     'cloudinary',
     'forum',
     'forumuser',

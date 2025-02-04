@@ -1,27 +1,23 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
-{% load crispy_forms_tags %} 
-<div class="container">
+{% load crispy_forms_tags %}
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
             <div class="card card-body">
-                <h3>User: {{ user.username | title}}</h3>
+                <h3>User: {{ user.username | title }}</h3>
+                <p>First Name: {{ user.first_name }}</p>
+                <p>Last Name: {{ user.last_name }}</p>
                 <p>Email: {{ user.email }}</p>
                 <p>Reg. Date: {{ user.date_joined|date:"F d, Y" }}</p>
-                <img src="{{ user.profile.profile_image.url }}" alt="Profile Picture" style="width:150px;height:150px;">
+                {% if user.profile.profile_image %}
+                    <img src="{{ user.profile.profile_image.url }}" alt="Profile Picture" class="img-thumbnail" style="width:150px;height:150px;">
+                {% else %}
+                    <p>No profile picture available.</p>
+                {% endif %}
                 <p>Bio: {{ user.profile.bio }}</p>
                 <p>Phone: {{ user.profile.phone }}</p>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card card-body">
-                <h3>Update Profile</h3>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ user_form|crispy }}
-                    {{ profile_form|crispy }}
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
+                <a href="{% url 'profile_update' %}" class="btn btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>
