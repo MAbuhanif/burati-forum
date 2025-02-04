@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ui.dev', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['ui.dev/amiresponsive', '127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -114,7 +114,7 @@ DATABASES = {
 CSRF_TRUSTED_ORIGINS = [
     "https://*.herokuapp.com",
     "http://localhost:8000/",
-    "https://ui.dev/amiresponsive",
+    "https://ui.dev/amiresponsive?url=",
 ]
 
 
