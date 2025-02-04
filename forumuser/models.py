@@ -4,6 +4,11 @@ from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
+    """
+    Profile model to store additional user information
+    for the forum user.
+    foreign key to User model
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=1000)
     phone = models.IntegerField(null=True, blank=True)

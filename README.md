@@ -84,7 +84,7 @@ Burati Forum is a web application built with Django that allows users to ask que
 | Column          | Type         | Description            |
 |-----------------|--------------|------------------------|
 | id (PK)         | Integer      | Primary Key            |
-| user_id (FK)    | Integer      | References Users.id    |
+| user_id (FK)    | Integer      | References User.id    |
 | bio             | Text         | User biography         |
 | phone           | String       | Contact number         |
 | profile_image   | String       | Image URL/path         |
@@ -93,7 +93,7 @@ Burati Forum is a web application built with Django that allows users to ask que
 | Column          | Type         | Description            |
 |-----------------|--------------|------------------------|
 | id (PK)         | Integer      | Primary Key            |
-| user_id (FK)    | Integer      | References Users.id    |
+| user_id (FK)    | Integer      | References User.id    |
 | title           | String       | Question title         |
 | detail         | Text         | Question details       |
 | created_on      | DateTime     | Creation timestamp     |

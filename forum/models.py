@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 
 
 class Question(models.Model):
+    """
+    Model for the Question
+    purpose of this model is to store the question asked by the user
+    foreign key is used to link the question with the user :model:`auth.User`
+    """
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="forum_question")
     title = models.CharField(max_length=200, unique=True)
@@ -17,6 +22,11 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    """
+    Model for the Answer
+    purpose of this model is to store the answer given by the user
+    foreign key is used to link the answer with the question
+    """
     question = models.ForeignKey(
         Question, on_delete=models.CASCADE, related_name='forum_answers')
     user = models.ForeignKey(

@@ -7,6 +7,14 @@ from .forms import UserForm, ProfileForm
 # Profile view
 @login_required
 def profile(request):
+    """"
+    Display the user's profile with the user form and profile form
+    **Arguments**
+    request: HttpRequest object
+    **Returns**
+    render: render the profile.html template with the user form,
+    profile form and profile
+    """
     try:
         profile = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
@@ -33,6 +41,14 @@ def profile(request):
 
 @login_required
 def profile_update(request):
+    """
+    Update the user's profile with the user form and profile form
+    **Arguments**
+    request: HttpRequest object
+    **Returns**
+    render: render the profile_update.html template with the user form,
+    profile form and profile
+    """
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -54,4 +70,7 @@ def profile_update(request):
 
 # About view
 def about(request):
+    """
+    Display the about page with the about.html template
+    """
     return render(request, 'forumuser/about.html')

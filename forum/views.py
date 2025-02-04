@@ -9,7 +9,11 @@ from .forms import AnswerForm, QuestionForm
 # Question List
 def home(request):
     """
-    search for questions by title
+    Display all questions in the forum with pagination and search
+    **context**
+    questions: all questions in the forum
+    **template**
+    forum/question_list.html
     """
     query = request.GET.get('q')
     if query:
@@ -27,7 +31,13 @@ def home(request):
 # Question Detail
 def question_detail(request, question_id):
     """
-    Display question and answers
+    Display a single question and its answers with pagination and form
+    **context**
+    question: the question to be displayed
+    answers: all answers to the question
+    answer_form: form to submit an answer
+    **template**
+    forum/question_detail.html
     """
     queryset = Question.objects.all()
     question = get_object_or_404(queryset, pk=question_id)
@@ -62,6 +72,15 @@ def question_detail(request, question_id):
 # update answer
 @login_required
 def update_answer(request, answer_id):
+    """
+    Update an answer by the user who posted it and
+    redirect to the question detail page
+    **context**
+    answer: the answer to be updated
+    form: form to update the answer
+    **template**
+    forum/answer_form.html
+    """
     answer = get_object_or_404(Answer, pk=answer_id, user=request.user)
     if request.method == 'POST':
         form = AnswerForm(request.POST, instance=answer)
@@ -76,6 +95,13 @@ def update_answer(request, answer_id):
 # Ask Question
 @login_required
 def ask_question(request):
+    """
+    Allow users to ask questions and redirect to the home page
+    **context**
+    form: form to ask a question
+    **template**
+    forum/ask_question.html
+    """
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
@@ -92,6 +118,15 @@ def ask_question(request):
 # update question
 @login_required
 def update_question(request, question_id):
+    """
+    Update a question by the user who posted it and
+    redirect to the question detail page
+    **context**
+    question: the question to be updated
+    form: form to update the question
+    **template**
+    forum/question_form.html
+    """
     question = get_object_or_404(Question, pk=question_id, user=request.user)
     if request.method == 'POST':
         form = QuestionForm(request.POST, instance=question)
@@ -106,6 +141,14 @@ def update_question(request, question_id):
 # delete question
 @login_required
 def delete_question(request, question_id):
+    """
+    Delete a question by the user who posted it and
+    redirect to the home page
+    **context**
+    question: the question to be deleted
+    **template**
+    forum/confirm_delete.html
+    """
     question = get_object_or_404(Question, pk=question_id, user=request.user)
     if request.method == 'POST':
         question.delete()
@@ -116,6 +159,14 @@ def delete_question(request, question_id):
 # delete answer
 @login_required
 def delete_answer(request, answer_id):
+    """
+    Delete an answer by the user who posted it and
+    redirect to the question detail page
+    **context**
+    answer: the answer to be deleted
+    **template**
+    forum/confirm_delete_answer.html
+    """
     answer = get_object_or_404(Answer, pk=answer_id, user=request.user)
     if request.method == 'POST':
         answer.delete()
