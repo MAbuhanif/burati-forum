@@ -12,40 +12,51 @@ Burati Forum is a web application built with Django that allows users to ask que
 - Search for questions
 - Responsive design with Bootstrap
 
+
+## User Stories
+
+All user stories can be found in a linked GitHub project [here](https://github.com/users/MAbuhanif/projects/8/views/1)
+
 ## Site Pages
 
 ### Home Page
-![Home Page](screenshots/home_page.png)
+![Home Page](static/images/screenshots/home.png)
+
+### About Page
+![About Page](static/images/screenshots/about.png)
 
 ### Register Page
-![Register Page](screenshots/register_page.png)
+![Register Page](static/images/screenshots/signup.png)
 
 ### Login Page
-![Login Page](screenshots/login_page.png)
+![Login Page](static/images/screenshots/login.png)
 
 ### Profile Page
-![Profile Page](screenshots/profile_page.png)
+![Profile Page](static/images/screenshots/profile.png)
+
+### Update Profile Page
+![Update Profile Page](static/images/screenshots/update_profile.png)
 
 ### Ask a Question Page
-![Ask a Question Page](screenshots/ask_question_page.png)
+![Ask a Question Page](static/images/screenshots/ask_question.png)
 
 ### Question Detail Page
-![Question Detail Page](screenshots/question_detail_page.png)
+![Question Detail Page](static/images/screenshots/question_detail.png)
 
 ### Update Question Page
-![Update Question Page](screenshots/update_question_page.png)
+![Update Question Page](static/images/screenshots/update_question.png)
 
 ### Delete Question Page
-![Delete Question Page](screenshots/delete_question_page.png)
+![Delete Question Page](static/images/screenshots/delete_question.png)
 
 ### Post an Answer
-![Post an Answer](screenshots/post_answer.png)
+![Post an Answer](static/images/screenshots/post_answer.png)
 
 ### Update Answer Page
-![Update Answer Page](screenshots/update_answer_page.png)
+![Update Answer Page](static/images/screenshots/update_answer.png)
 
 ### Delete Answer Page
-![Delete Answer Page](screenshots/delete_answer_page.png)
+![Delete Answer Page](static/images/screenshots/delete_answer.png)
 
 
 ## Tools & Technologies Used
@@ -249,6 +260,68 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 - **Post an answer** to a question by navigating to the question's detail page.
 - **Edit or delete** your questions and answers.
 - **View and update** your profile information.
+
+### File Structure
+
+burati-forum/
+├── buratiforum/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── ...
+├── forum/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   └── ...
+├── forumuser/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   └── ...
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── ...
+├── templates/
+│   ├── base.html
+│   ├── forum/
+│   │   ├── ask_question.html
+│   │   ├── question_detail.html
+│   │   ├── answer_form.html
+│   │   ├── confirm_delete.html
+│   │   ├── confirm_delete_answer.html
+│   │   ├── update_question.html
+│   │   └── ...
+│   ├── forumuser/
+│   │   ├── profile.html
+│   │   ├── profile_update.html
+│   │   ├── about.html
+│   │   └── ...
+│   ├── 400.html
+│   ├── 403.html
+│   ├── 404.html
+│   ├── 500.html
+│   └── ...
+├── .env
+├── .gitignore
+├── manage.py
+├── Procfile
+├── README.md
+├── requirements.txt
+└── runtime.txt
 
 ### Contributing
 

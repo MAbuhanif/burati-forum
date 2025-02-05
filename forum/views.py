@@ -135,7 +135,7 @@ def update_question(request, question_id):
             return redirect('question_detail', question_id=question.id)
     else:
         form = QuestionForm(instance=question)
-    return render(request, 'forum/question_form.html', {'form': form})
+    return render(request, 'forum/update_question.html', {'form': form})
 
 
 # delete question

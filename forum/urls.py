@@ -3,9 +3,10 @@ from . import views
 
 
 urlpatterns = [
-    path('ask/', views.ask_question, name='ask_question'), 
+    path('ask/', views.ask_question, name='ask_question'),
     path('answer/<int:answer_id>/update/', views.update_answer, name='update_answer'),
     path('question/<int:question_id>/', views.question_detail, name='question_detail'),
+    path('question/<int:question_id>/update/', views.update_question, name='update_question'),
     path('question/<int:question_id>/edit/', views.update_question, name='update_question'),
     path('question/<int:question_id>/delete/', views.delete_question, name='delete_question'),
     path('answer/<int:answer_id>/delete/', views.delete_answer, name='delete_answer'),
