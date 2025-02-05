@@ -10,12 +10,14 @@
     <div class="col-md-8 mt-3 offset-md-2">
       <h3>{% trans "Sign Up" %}</h3>
 
-      <p>{% blocktrans %}
+      {% blocktrans %}
+      <p>
         Welcome back to the Burati Forum.
         Do you already have an account? Then please
         <a class="link" href="{{ login_url }}">sign in</a>
         instead.
-      {% endblocktrans %}</p>
+      </p>
+      {% endblocktrans %}
     </div>
   </div>
   <div class="row">
