@@ -27,7 +27,7 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 
 | File | Jigsaw URL | Screenshot | Notes |
 | --- | --- | --- | --- |
-| style.css | [Jigsaw](https://jigsaw.w3.org) | Pass: No Errors |
+| style.css | [Jigsaw](https://jigsaw.w3.org) |![screenshoot](static/images/validation/css_validation.png) | Pass: No Errors |
 
 ### Python
 
@@ -56,4 +56,4 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
-    ![screenshot](static/images/validation/lighthouse.png)
+![screenshot](static/images/validation/lighthouse.png)
