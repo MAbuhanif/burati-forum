@@ -128,6 +128,10 @@ All user stories can be found in a linked GitHub project [here](https://github.c
    `Users` ←→ `Answers` (One user can have many answers)  
    `Questions` ←→ `Answers` (One question can have many answers)
 
+## Testing
+
+For all testing, please refer to the [TESTING.md](TESTING.md) file.
+
 ### Manual Testing
 
 #### Test Cases Overview
