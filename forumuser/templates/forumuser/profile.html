@@ -3,20 +3,24 @@
 {% load crispy_forms_tags %}
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card card-body">
-                <h3>User: {{ user.username | title }}</h3>
-                <p>First Name: {{ user.first_name }}</p>
-                <p>Last Name: {{ user.last_name }}</p>
-                <p>Email: {{ user.email }}</p>
-                <p>Reg. Date: {{ user.date_joined|date:"F d, Y" }}</p>
+                <h3 class="card-title">User: {{ user.username | title }}</h3>
+                <p class="card-text"><strong>First Name:</strong> {{ user.first_name }}</p>
+                <p class="card-text"><strong>Last Name:</strong> {{ user.last_name }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                <p class="card-text"><strong>Reg. Date:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
                 {% if user.profile.profile_image %}
                     <img src="{{ user.profile.profile_image.url }}" alt="Profile Picture" class="img-thumbnail" style="width:150px;height:150px;">
                 {% else %}
-                    <p>No profile picture available.</p>
+                    <p class="card-text">No profile picture available.</p>
                 {% endif %}
-                <p>Bio: {{ user.profile.bio }}</p>
-                <p>Phone: {{ user.profile.phone }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body">
+                <p class="card-text"><strong>Bio:</strong> {{ user.profile.bio }}</p>
+                <p class="card-text"><strong>Phone:</strong> {{ user.profile.phone }}</p>
                 <a href="{% url 'profile_update' %}" class="btn btn-primary">Edit Profile</a>
             </div>
         </div>
