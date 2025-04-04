@@ -152,8 +152,10 @@ def delete_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id, user=request.user)
     if request.method == 'POST':
         question.delete()
-        return redirect('question_list')
-    return render(request, 'forum/confirm_delete.html', {'question': question})
+        messages.success(request, 'Your question has been deleted.')
+        return redirect('home')
+    return render(
+        request, 'forum/confirm_delete.html', {'question': question})
 
 
 # delete answer
