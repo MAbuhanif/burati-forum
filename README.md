@@ -17,6 +17,14 @@ Burati Forum is a web application built with Django that allows users to ask que
 
 All user stories can be found in a linked GitHub project [here](https://github.com/users/MAbuhanif/projects/8/views/1)
 
+## User Experience
+
+The project uses Arial font for a clean and modern design. The color scheme consists of:
+
+    Primary Color: #f4f4f4
+    Secondary Color: #ffffff
+    Background: #f4f4f4
+
 ## Site Pages
 
 ### Home Page
@@ -74,6 +82,47 @@ All user stories can be found in a linked GitHub project [here](https://github.c
 - **Crispy Forms** used for auto-formatting of front-end forms
 - **Allauth** used as the user authentication system
 - **Heroku** used for hosting the deployed back-end site.
+
+## Wireframes
+
+The wireframes have been designed for both PC and mobile screens to provide a visual representation of each page's layout and functionality.
+
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <th style="text-align: center;">Home</th>
+        <th style="text-align: center;">Profile</th>
+        <th style="text-align: center;">Sign Up</th>
+    </tr>
+    <tr>
+        <td> 
+                <img src="static/images/screenshots/Burat-forum-home-wireframe.png" alt="Home Mobile Wireframe" >
+        </td>
+        <td>
+                <img src="static/images/screenshots/Burat-forum-profile1-wireframe.png" alt="Sign Up PC Wireframe" >
+        </td>
+        <td>
+                <img src="static/images/screenshots/Burat-forum-register-wireframe.png" alt="Sign In Mobile Wireframe">
+        </td>
+    </tr>
+</table>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <th style="text-align: center;">Question Detail</th>
+        <th style="text-align: center;">About</th>
+        <th style="text-align: center;">Ask Question</th>
+    </tr>
+    <tr>
+        <td>
+            <img src="static/images/screenshots/Burat-forum-q.detail-wireframe.png" alt="Home PC Wireframe" >
+        </td>
+        <td>
+            <img src="static/images/screenshots/Burat-forum-about-wireframe.png" alt="Sign Up Mobile Wireframe" >
+        </td>
+        <td>
+            <img src="static/images/screenshots/Burat-forum-ask-question-wireframe.png" alt="Sign In PC Wireframe" >
+        </td>
+    </tr>
+</table>
 
 ## Database Design
 
